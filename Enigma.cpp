@@ -1,6 +1,8 @@
 #include "Enigma.hpp"
 using namespace std;
 		
+#include <iostream>
+
 Enigma::Enigma(const vector<string>& rotor_files, const string * const p_plugboard_file) {
 	for (auto &rotor : rotor_files) {
 		rotors.push_back(Rotor(rotor));

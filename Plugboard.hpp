@@ -8,11 +8,14 @@
 class Plugboard : public Component {
 public:
 	Plugboard();
-	Plugboard(std::string file_name);
-
-	Plugboard& operator = (Plugboard&& obj) = default;
+	Plugboard(const std::string& file_name);
 
 	char map(char c) const;
+private:
+	static const int SIGMA = 26;
+
+	char mapping[SIGMA];
 };
+
 
 #endif 
