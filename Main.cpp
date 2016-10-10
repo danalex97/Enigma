@@ -1,11 +1,22 @@
-#include <stdexcept>
 #include <iostream>
-#include <fstream>
+#include <vector>
+#include <string>
 
+#include "Parser.hpp"
+#include "Machine.hpp"
+#include "Enigma.hpp"
 using namespace std;
 
-int main(int argc, char **argv)
-{
-  cout << "TODO: implement an Enigma machine" << endl;
-  return 0;
+int main(int argc, char **argv) {
+	if (argc < 2) {
+		cerr << "Please provide input files.\n";
+	} else {
+		Parser parser(argc, argv);
+		Machine *machine = new Enigma(
+			parser.get_rotor_files(),
+			parser.get_plugboard_file()
+		);
+
+		delete machine;
+	}
 }

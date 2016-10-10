@@ -3,7 +3,7 @@
 
 class Component {
 public:
-	virtual char map(char c) = 0;
+	virtual char map(char c) const = 0;
 };
 
 #endif 

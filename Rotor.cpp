@@ -1,4 +1,8 @@
 #include "Rotor.hpp"
+using namespace std;
+
+Rotor::Rotor(string file_name) {
+}
 
 char Rotor::map(char ch) const {
 	return ch;

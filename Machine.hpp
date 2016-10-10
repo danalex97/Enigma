@@ -4,8 +4,8 @@
 #include <string>
 
 class Machine {
-	virtual std::string encode(std::string input) = 0;
-	virtual std::string decode(std::string input) = 0;
+	virtual std::string encode(const std::string& input) = 0;
+	virtual std::string decode(const std::string& input) = 0;
 };
 
 #endif

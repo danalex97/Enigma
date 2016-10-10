@@ -5,6 +5,7 @@
 
 class Reflector : public Component {
 public:
+	Reflector();
 	char map(char c) const;
 };
 

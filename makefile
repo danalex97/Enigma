@@ -1,25 +1,28 @@
 # edit this makefile so that running make compiles your enigma program
 
-enigma: Main.o Plugboard.o Reflector.o Rotor.o Pipeline.o Enigma.o
-	g++ $^ -o $@
+enigma: Main.o Plugboard.o Reflector.o Rotor.o Pipeline.o Enigma.o Parser.o
+	g++ -std=c++11 $^ -o $@
 
 Main.o: Main.cpp 
-	g++ -c $^ -o $@
+	g++ -std=c++11 -c $^ -o $@
 
 Enigma.o: Enigma.cpp 
-	g++ -c $^ -o $@
+	g++ -std=c++11 -c $^ -o $@
 
 Pipeline.o: Pipeline.cpp 
-	g++ -c $^ -o $@
+	g++ -std=c++11 -c $^ -o $@
 
 Plugboard.o: Plugboard.cpp 
-	g++ -c $^ -o $@
+	g++ -std=c++11 -c $^ -o $@
 
 Reflector.o: Reflector.cpp
-	g++ -c $^ -o $@
+	g++ -std=c++11 -c $^ -o $@
 
 Rotor.o: Rotor.cpp
-	g++ -c $^ -o $@
+	g++ -std=c++11 -c $^ -o $@
+
+Parser.o: Parser.cpp
+	g++ -std=c++11 -c $^ -o $@
 
 clean:
 	rm -rf enigma *.o
