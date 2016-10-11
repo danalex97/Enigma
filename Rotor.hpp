@@ -15,6 +15,15 @@ public:
 	
 	bool forward();
 	bool backward();
+private:
+	static const int SIGMA = 26;
+
+	int offset;
+
+	char dir_map[SIGMA];
+	char rev_map[SIGMA];
+
+	int char_pos(char ch) const;
 };
 
 class ReverseRotor : public Component {

@@ -5,13 +5,14 @@ using namespace std;
 #include <memory>
 
 Enigma::Enigma(const vector<string>& rotor_files, const string * const p_plugboard_file) {
-	for (auto &rotor : rotor_files) {
-		rotors.push_back(Rotor(rotor));
+	for (auto &rotor_file : rotor_files) {
+		shared_ptr<Rotor> rotor(new Rotor(rotor_file));
+		rotors.push_back(*rotor);
 	}
 	if (p_plugboard_file != nullptr) { 
 		plugboard = Plugboard(*p_plugboard_file);
 	}
-	build_pipeline();
+	build_pipeline();	
 }
 
 void Enigma::build_pipeline() {

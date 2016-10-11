@@ -16,7 +16,7 @@ char Pipeline::map(char ch) const {
 
 char Pipeline::inv_map(char ch) const {
 	for (int i = pipeline.size() - 1; i >= 0; --i) {
-		ch = pipeline[i]->map(ch);
+		ch = pipeline[i]->inv_map(ch);
 	}
 	return ch;
 }

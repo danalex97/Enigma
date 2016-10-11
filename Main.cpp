@@ -37,8 +37,8 @@ int main(int argc, char **argv) {
 			string input = build_input();
 			string output = machine->encode(input); 
 
-			//cout << output;
-			cout << machine->decode(output);
+			cout << output;
+			//cout << machine->decode(output);
 		} catch(...) {
 			cout << "Invalid argument provided." << endl;
 		}
