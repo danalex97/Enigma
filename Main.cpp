@@ -38,12 +38,6 @@ int main(int argc, char **argv) {
 			string output = machine->encode(input); 
 
 			cout << output;
-
-			// Machine *machine2 = new Enigma(
-			// 	parser.get_rotor_files(),
-			// 	parser.get_plugboard_file()
-			// );
-			// cout << machine2->decode(output);
 		} catch(...) {
 			cout << "Invalid argument provided." << endl;
 		}

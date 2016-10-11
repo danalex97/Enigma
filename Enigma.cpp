@@ -3,6 +3,7 @@ using namespace std;
 
 #include <iostream>
 #include <memory>
+#include <algorithm>
 
 Enigma::Enigma(const vector<string>& rotor_files, const string * const p_plugboard_file) {
 	for (auto &rotor_file : rotor_files) {
@@ -54,5 +55,9 @@ string Enigma::encode(const string& input) {
 } 
 
 string Enigma::decode(const string& output) {
-	return feed(output, false);
+	string feed_text = output;
+	reverse(feed_text.begin(), feed_text.end());
+	string input = feed(feed_text, false);
+	reverse(input.begin(), input.end());
+	return input;
 } 
