@@ -17,6 +17,8 @@ int main(int argc, char **argv) {
 			parser.get_plugboard_file()
 		);
 
+		cout
+
 		delete machine;
 	}
 }

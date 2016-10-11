@@ -19,6 +19,7 @@ public:
 
 class ReverseRotor : public Component {
 public:
+	ReverseRotor(Rotor *rotor);
 	char map(char c) const;
 private:
 	Rotor *rotor;

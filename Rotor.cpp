@@ -21,3 +21,6 @@ void Rotor::backward() {
 char ReverseRotor::map(char ch) const {
 	return ch;
 }
+
+ReverseRotor::ReverseRotor(Rotor *rotor) : rotor(rotor) {
+}
