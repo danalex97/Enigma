@@ -3,13 +3,13 @@ using namespace std;
 
 #include <iostream>
 
-Rotor::Rotor(string file_name) {
+Rotor::Rotor(string file_name) : dir_map(SIGMA), rev_map(SIGMA) {
 	ifstream file(file_name);
 
 	for (int i = 0; i < SIGMA; ++i) {
 		int pos = 0;
 		file >> pos;
-	
+
 		rev_map[pos] = i;
 		dir_map[i] = pos;
 	}

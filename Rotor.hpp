@@ -5,6 +5,7 @@
 
 #include <string>
 #include <fstream>
+#include <vector>
 
 class Rotor : public Component {
 public:
@@ -20,8 +21,8 @@ private:
 
 	int offset;
 
-	int dir_map[SIGMA];
-	int rev_map[SIGMA];
+	std::vector<int> dir_map;
+	std::vector<int> rev_map;
 
 	int char_pos(char ch) const;
 };

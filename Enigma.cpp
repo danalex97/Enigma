@@ -23,7 +23,7 @@ void Enigma::build_pipeline() {
 		));
 	}
 	pipeline.add(shared_ptr<Component>(&reflector));
-	for (int i = 0; i < rotors.size(); ++i) {
+	for (int i = rotors.size() - 1; i >= 0; --i) {
 		pipeline.add(shared_ptr<Component>(
 			new ReverseRotor(&rotors[i])
 		));
