@@ -12,10 +12,10 @@ char Rotor::inv_map(char ch) const {
 	return ch;
 }
 
-void Rotor::forward() {
+bool Rotor::forward() {
 }
 
-void Rotor::backward() {
+bool Rotor::backward() {
 }
 
 char ReverseRotor::map(char ch) const {
@@ -23,4 +23,8 @@ char ReverseRotor::map(char ch) const {
 }
 
 ReverseRotor::ReverseRotor(Rotor *rotor) : rotor(rotor) {
+}
+
+char ReverseRotor::inv_map(char ch) const {
+	return ch;
 }

@@ -13,14 +13,15 @@ public:
 	char map(char c) const;
 	char inv_map(char c) const; 
 	
-	void forward();
-	void backward();
+	bool forward();
+	bool backward();
 };
 
 class ReverseRotor : public Component {
 public:
 	ReverseRotor(Rotor *rotor);
 	char map(char c) const;
+	char inv_map(char c) const;
 private:
 	Rotor *rotor;
 };

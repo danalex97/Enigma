@@ -4,6 +4,7 @@
 #include <string>
 
 class Machine {
+public:
 	virtual std::string encode(const std::string& input) = 0;
 	virtual std::string decode(const std::string& input) = 0;
 };

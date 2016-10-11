@@ -19,11 +19,13 @@ public:
 	std::string decode(const std::string& input);
 private:
 	void build_pipeline();
+	std::string feed(const std::string& input, bool forward);
 
 	std::vector<Rotor> rotors;
 	
 	Plugboard plugboard;
 	Reflector reflector;
+
 	Pipeline pipeline;
 };
 
