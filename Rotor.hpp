@@ -20,8 +20,8 @@ private:
 
 	int offset;
 
-	char dir_map[SIGMA];
-	char rev_map[SIGMA];
+	int dir_map[SIGMA];
+	int rev_map[SIGMA];
 
 	int char_pos(char ch) const;
 };

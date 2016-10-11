@@ -10,8 +10,8 @@ Rotor::Rotor(string file_name) {
 		int pos = 0;
 		file >> pos;
 	
-		rev_map[dir_map[pos]] = char(i) + 'A';
-		dir_map[i] = char(pos) + 'A';
+		rev_map[pos] = i;
+		dir_map[i] = pos;
 	}
 	offset = 0;
 
@@ -19,11 +19,11 @@ Rotor::Rotor(string file_name) {
 }
 
 char Rotor::map(char ch) const {
-	return dir_map[char_pos(ch)];
+	return 'A' + char((dir_map[char_pos(ch)] - offset + SIGMA) % SIGMA);
 }
 
 char Rotor::inv_map(char ch) const {
-	return rev_map[char_pos(ch)];
+	return 'A' + char((rev_map[char_pos(ch)] - offset + SIGMA) % SIGMA);
 }
 
 bool Rotor::forward() {
