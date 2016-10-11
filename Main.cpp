@@ -38,6 +38,7 @@ int main(int argc, char **argv) {
 			string output = machine->encode(input); 
 
 			cout << output;
+			//cout << machine->decode(output);
 		} catch(...) {
 			cout << "Invalid argument provided." << endl;
 		}

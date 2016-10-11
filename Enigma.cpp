@@ -37,15 +37,16 @@ string Enigma::feed(const string& input, bool forward) {
 	for (auto &ch : input) {
 		if (ch >= 'A' && ch <= 'Z') {
 			output += forward ? pipeline.map(ch) : pipeline.inv_map(ch);
+			for (int i = 0; i < rotors.size(); ++i) {
+				bool propagate = forward ? rotors[i].forward() : rotors[i].backward();
+				if (!propagate) {
+					break;
+				}
+			}
 		} else {
 			output += ch;
 		}
-		for (int i = 0; i < rotors.size(); ++i) {
-			bool propagate = forward ? rotors[i].forward() : rotors[i].backward();
-			if (!propagate) {
-				break;
-			}
-		}
+		
 	}
 	return output;
 }
@@ -55,9 +56,10 @@ string Enigma::encode(const string& input) {
 } 
 
 string Enigma::decode(const string& output) {
-	string feed_text = output;
+	string feed_text = output + "A";
 	reverse(feed_text.begin(), feed_text.end());
 	string input = feed(feed_text, false);
 	reverse(input.begin(), input.end());
+	input = input.substr(0, input.size()-1);
 	return input;
 } 

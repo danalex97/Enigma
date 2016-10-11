@@ -4,7 +4,7 @@
 class Component {
 public:
 	virtual char map(char c) const = 0;
-	virtual char inv_map(char c);
+	virtual char inv_map(char c) const;
 };
 
 #endif 
