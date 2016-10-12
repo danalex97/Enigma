@@ -9,7 +9,8 @@ class Plugboard : public Component {
 public:
 	Plugboard();
 	Plugboard(const std::string& file_name);
-
+	virtual ~Plugboard() = default;
+	
 	char map(char c) const;
 private:
 	static const int SIGMA = 26;

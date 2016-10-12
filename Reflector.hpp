@@ -5,7 +5,9 @@
 
 class Reflector : public Component {
 public:
-	Reflector();
+	Reflector() = default;
+	virtual ~Reflector() = default;
+
 	char map(char c) const;
 };
 

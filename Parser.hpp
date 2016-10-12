@@ -7,6 +7,7 @@
 class Parser {
 public:
 	Parser(int argc, char **argv);
+	virtual ~Parser() = default;
 
 	std::vector<std::string> get_rotor_files();
 	std::string *get_plugboard_file();

@@ -8,6 +8,9 @@
 
 class Pipeline : public Component {
 public:
+	Pipeline() = default;
+	virtual ~Pipeline() = default;
+
 	void add(std::shared_ptr<Component> component);
 	char map(char ch) const;
 	char inv_map(char ch) const;

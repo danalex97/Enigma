@@ -6,10 +6,12 @@
 #include <string>
 #include <fstream>
 #include <vector>
+#include <memory>
 
 class Rotor : public Component {
 public:
 	Rotor(std::string file_name);
+	virtual ~Rotor() = default;
 
 	char map(char c) const;
 	char inv_map(char c) const; 
@@ -30,6 +32,8 @@ private:
 class ReverseRotor : public Component {
 public:
 	ReverseRotor(Rotor *rotor);
+	virtual ~ReverseRotor() = default;
+
 	char map(char c) const;
 	char inv_map(char c) const;
 private:

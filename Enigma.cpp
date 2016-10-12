@@ -2,34 +2,35 @@
 using namespace std;
 
 #include <iostream>
-#include <memory>
 #include <algorithm>
 
 Enigma::Enigma(const vector<string>& rotor_files, const string * const p_plugboard_file) {
 	for (auto &rotor_file : rotor_files) {
-		shared_ptr<Rotor> rotor(new Rotor(rotor_file));
-		rotors.push_back(*rotor);
+		rotors.push_back(make_shared<Rotor>(rotor_file));
 	}
 	if (p_plugboard_file != nullptr) { 
-		plugboard = Plugboard(*p_plugboard_file);
+		plugboard = make_shared<Plugboard>(*p_plugboard_file);
 	}
+	reflector = make_shared<Reflector>();
 	build_pipeline();	
 }
 
 void Enigma::build_pipeline() {
-	pipeline.add(shared_ptr<Component>(&plugboard));
+	pipeline.add(plugboard->get_ptr());
 	for (int i = 0; i < rotors.size(); ++i) {
 		pipeline.add(shared_ptr<Component>(
-			&rotors[i]
+			rotors[i]
 		));
 	}
-	pipeline.add(shared_ptr<Component>(&reflector));
+	pipeline.add(reflector->get_ptr());
 	for (int i = rotors.size() - 1; i >= 0; --i) {
 		pipeline.add(shared_ptr<Component>(
-			new ReverseRotor(&rotors[i])
+			new ReverseRotor(
+				rotors[i].get()
+			)
 		));
 	}
-	pipeline.add(shared_ptr<Component>(&plugboard));
+	pipeline.add(plugboard->get_ptr());
 }
 
 string Enigma::feed(const string& input, bool forward) {
@@ -38,7 +39,7 @@ string Enigma::feed(const string& input, bool forward) {
 		if (ch >= 'A' && ch <= 'Z') {
 			output += forward ? pipeline.map(ch) : pipeline.inv_map(ch);
 			for (int i = 0; i < rotors.size(); ++i) {
-				bool propagate = forward ? rotors[i].forward() : rotors[i].backward();
+				bool propagate = forward ? rotors[i]->forward() : rotors[i]->backward();
 				if (!propagate) {
 					break;
 				}
