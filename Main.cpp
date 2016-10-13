@@ -11,8 +11,8 @@ static string build_input() {
 	char chr;
 	string input;
 	while (cin >> noskipws >> chr) {
-		input += chr;
 		if (chr >= 'A' && chr <= 'Z') {
+			input += chr;
 			continue;
 		}
 		if (chr == '\t' || chr == '\n' || chr == ' ' || chr == '\r') {
@@ -38,7 +38,6 @@ int main(int argc, char **argv) {
 			string output = machine->encode(input); 
 
 			cout << output;
-			//cout << machine->decode(output);
 		} catch(...) {
 			cout << "Invalid argument provided." << endl;
 		}
