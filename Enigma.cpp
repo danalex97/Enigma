@@ -4,13 +4,12 @@ using namespace std;
 #include <iostream>
 #include <algorithm>
 
-Enigma::Enigma(const vector<string>& rotor_files, const string * const p_plugboard_file) {
+Enigma::Enigma(const vector<string>& rotor_files, const string plugboard_file) {
 	for (auto &rotor_file : rotor_files) {
 		rotors.push_back(make_shared<Rotor>(rotor_file));
 	}
-	if (p_plugboard_file != nullptr) { 
-		plugboard = make_shared<Plugboard>(*p_plugboard_file);
-	}
+	
+	plugboard = make_shared<Plugboard>(plugboard_file);
 	reflector = make_shared<Reflector>();
 	build_pipeline();	
 }

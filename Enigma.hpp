@@ -14,7 +14,7 @@
 
 class Enigma : public Machine {
 public:
-	Enigma(const std::vector<std::string>& rotor_files, const std::string * const  p_plugboard_files);
+	Enigma(const std::vector<std::string>& rotor_files, const std::string plugboard_file);
 	virtual ~Enigma() = default;
 
 	std::string encode(const std::string& input);

@@ -1,47 +1,38 @@
 #include <iostream>
-#include <vector>
-#include <string>
+#include <stdexcept>
 
 #include "Parser.hpp"
 #include "Machine.hpp"
 #include "Enigma.hpp"
 using namespace std;
 
-static string build_input() {
-	char chr;
-	string input;
-	while (cin >> noskipws >> chr) {
-		if (chr >= 'A' && chr <= 'Z') {
-			input += chr;
-			continue;
-		}
-		if (chr == '\t' || chr == '\n' || chr == ' ' || chr == '\r') {
-			continue;
-		}
-		throw invalid_argument("");
-	}
-	return input;
-}
-
 int main(int argc, char **argv) {
-	if (argc < 2) {
-		cerr << "Please provide input files.\n";
-	} else {
-		Parser parser(argc, argv);
-		Machine *machine = new Enigma(
-			parser.get_rotor_files(),
-			parser.get_plugboard_file()
-		);
-
-		try {
-			string input = build_input();
-			string output = machine->encode(input); 
-
-			cout << output;
-		} catch(...) {
-			cout << "Invalid argument provided." << endl;
-		}
-
-		delete machine;
+	Parser *parser;
+	try {
+		parser = new Parser(argc, argv);
+	} catch (invalid_argument e) {
+		cerr << e.what() << endl;
+		return 1;
 	}
+
+	Machine *machine = new Enigma(
+		parser->get_rotor_files(),
+		parser->get_plugboard_file()
+	);
+
+	string input;
+	
+	try {
+		input = parser->prepare_input();
+	} catch (invalid_argument e) {
+		cerr << e.what() << endl;
+		return 1;
+	}	
+	delete parser;
+
+	string output = machine->encode(input); 
+	delete machine;
+
+	cout << output;
+	return 0;
 }

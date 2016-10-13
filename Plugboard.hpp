@@ -7,7 +7,6 @@
 
 class Plugboard : public Component {
 public:
-	Plugboard();
 	Plugboard(const std::string& file_name);
 	virtual ~Plugboard() = default;
 	
