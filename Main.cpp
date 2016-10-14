@@ -23,7 +23,7 @@ int main(int argc, char **argv) {
 	string input;
 	
 	try {
-		input = parser->prepare_input();
+		input = Parser::prepare_input();
 	} catch (invalid_argument e) {
 		cerr << e.what() << endl;
 		return 1;
@@ -33,6 +33,6 @@ int main(int argc, char **argv) {
 	string output = machine->encode(input); 
 	delete machine;
 
-	cout << output;
+	cout << Parser::eliminate_special_chars(output);
 	return 0;
 }

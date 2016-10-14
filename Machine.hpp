@@ -3,6 +3,10 @@
 
 #include <string>
 
+/*
+ * Interface of an encoding/decoding machine.
+ */
+
 class Machine {
 public:
 	Machine() = default;

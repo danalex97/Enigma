@@ -3,7 +3,7 @@ using namespace std;
 
 #include <iostream>
 
-Rotor::Rotor(string file_name) : dir_map(SIGMA), rev_map(SIGMA) {
+Rotor::Rotor(const string& file_name) : dir_map(SIGMA), rev_map(SIGMA) {
 	ifstream file(file_name);
 
 	for (int i = 0; i < SIGMA; ++i) {
@@ -18,12 +18,17 @@ Rotor::Rotor(string file_name) : dir_map(SIGMA), rev_map(SIGMA) {
 	file.close();
 }
 
+
 char Rotor::map(char ch) const {
-	return 'A' + char((dir_map[char_pos(ch)] - offset + SIGMA) % SIGMA);
+	return offset_char(dir_map[char_pos(ch)]); 
 }
 
 char Rotor::inv_map(char ch) const {
-	return 'A' + char((rev_map[char_pos(ch)] - offset + SIGMA) % SIGMA);
+	return offset_char(rev_map[char_pos(ch)]);
+}
+
+char Rotor::offset_char(int pos) const {
+	return 'A' + char((pos - offset + SIGMA) % SIGMA);
 }
 
 bool Rotor::forward() {
@@ -40,7 +45,7 @@ int Rotor::char_pos(char ch) const {
 	return (int(ch - 'A') + offset) % SIGMA;
 }
 
-ReverseRotor::ReverseRotor(Rotor *rotor) : rotor(rotor) {
+ReverseRotor::ReverseRotor(Rotor * const rotor) : rotor(rotor) {
 }
 
 char ReverseRotor::map(char ch) const {

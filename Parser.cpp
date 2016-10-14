@@ -3,7 +3,7 @@ using namespace std;
 
 const std::string Parser::SPECIAL_CHARS = "\t\r\n ";
 
-Parser::Parser(int argc, char **argv) {
+Parser::Parser(const int argc, char ** const argv) {
 	if (argc < 2) {
 		throw invalid_argument("No input files given.");
 	}
@@ -19,8 +19,8 @@ string Parser::prepare_input() {
 	char chr;
 	string input;
 	while (cin >> noskipws >> chr) {
+		input += chr;
 		if (chr >= 'A' && chr <= 'Z') {
-			input += chr;
 			continue;
 		}
 		if (SPECIAL_CHARS.find(chr) != string::npos) {
@@ -31,12 +31,23 @@ string Parser::prepare_input() {
 	return input;
 }
 
-bool Parser::file_exists(const std::string& file_name) {
+string Parser::eliminate_special_chars(const string& input) {
+	string out;
+	for (auto &chr : input) {
+		if (SPECIAL_CHARS.find(chr) != string::npos) {
+			continue;
+		}	
+		out += chr;
+	}
+	return out;
+}
+
+bool Parser::file_exists(const std::string& file_name) const {
     ifstream file(file_name);
     return file.good();
 }
 
-vector<string> Parser::get_rotor_files() { 
+vector<string> Parser::get_rotor_files() const { 
 	vector<string> out;
 	for (size_t i = 0; i < args.size() - 1; ++i) { 
 		out.push_back(args[i]);
@@ -44,6 +55,6 @@ vector<string> Parser::get_rotor_files() {
 	return out;
 }
 	
-string Parser::get_plugboard_file() {
+string Parser::get_plugboard_file() const {
 	return args.back();
 }

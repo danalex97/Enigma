@@ -12,15 +12,27 @@
 #include <vector>
 #include <memory>
 
+/*
+ * The constructor prepares the machine by provinding the lookup files. 
+ * After the single components are constructed, the pipeline is built.
+ * The reponsability for static object is passed to the pipeline. In 
+ * order to the objects' shared pointer table to be constructed only once
+ * the component class enables passing by extending enable_shared_from_this.
+
+ * The encoding and decoding methods have a common pipeline, that is the one
+ * in feed function, the single diffence being the direction in which the rotor
+ * moves.
+ */
+
 class Enigma : public Machine {
 public:
-	Enigma(const std::vector<std::string>& rotor_files, const std::string plugboard_file);
+	Enigma(const std::vector<std::string>& rotor_files, const std::string& plugboard_file);
 	virtual ~Enigma() = default;
 
 	std::string encode(const std::string& input);
 	std::string decode(const std::string& input);
 private:
-	void build_pipeline();
+	void build_pipeline(); 
 	std::string feed(const std::string& input, bool forward);
 
 	std::vector<std::shared_ptr<Rotor> > rotors;
