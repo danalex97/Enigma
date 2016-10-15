@@ -1,8 +1,6 @@
 #include "Pipeline.hpp"
 using namespace std;
 
-#include <iostream>
-
 void Pipeline::add(shared_ptr<Component> component) {
 	pipeline.push_back(component);
 }

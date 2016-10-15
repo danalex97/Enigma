@@ -1,7 +1,6 @@
 #include "Enigma.hpp"
 using namespace std;
 
-#include <iostream>
 #include <algorithm>
 
 Enigma::Enigma(const vector<string>& rotor_files, const string& plugboard_file) {
@@ -56,12 +55,12 @@ string Enigma::encode(const string& input) {
 } 
 
 string Enigma::decode(const string& output) {
-	string feed_text = output + 'A';
+	string feed_text = output + "A";
 
 	reverse(feed_text.begin(), feed_text.end());
 	string input = feed(feed_text, false);
 	reverse(input.begin(), input.end());
 	
-	input = input.substr(0, input.size()-1);
+	input = input.substr(0, input.size() - 1);
 	return input;
 } 

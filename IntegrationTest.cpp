@@ -12,9 +12,9 @@ using namespace std;
 const int SIGMA = 26;
 const string FOLDER = "components";
 
-const int TESTS = 1;
+const int TESTS = 100;
 
-const int LENGTH = 10;
+const int LENGTH = 1000;
 const int ROTORS = 10;
 
 static void gen_input_file(const string& file_path) {
@@ -82,5 +82,6 @@ int main() {
 			return 0;
 		}
 	}
+	cerr << "All tests passed." << '\n';
 	return 0;
 }

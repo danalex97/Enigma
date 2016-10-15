@@ -1,8 +1,6 @@
 #include "Rotor.hpp"
 using namespace std;
 
-#include <iostream>
-
 Rotor::Rotor(const string& file_name) : dir_map(SIGMA), rev_map(SIGMA) {
 	ifstream file(file_name);
 
@@ -20,7 +18,7 @@ Rotor::Rotor(const string& file_name) : dir_map(SIGMA), rev_map(SIGMA) {
 
 
 char Rotor::map(char ch) const {
-	return offset_char(dir_map[char_pos(ch)]); 
+	return offset_char(dir_map[char_pos(ch)]);
 }
 
 char Rotor::inv_map(char ch) const {
@@ -38,7 +36,7 @@ bool Rotor::forward() {
 
 bool Rotor::backward() {
 	offset = (offset - 1 + SIGMA) % SIGMA;
-	return offset == 0;
+	return offset == 25;
 }
 
 int Rotor::char_pos(char ch) const {
