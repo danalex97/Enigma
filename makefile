@@ -3,6 +3,12 @@
 enigma: Main.o Plugboard.o Reflector.o Rotor.o Pipeline.o Enigma.o Parser.o Component.o
 	g++ -std=c++11 $^ -o $@
 
+tests: Tests.o Plugboard.o Reflector.o Rotor.o Pipeline.o Enigma.o Component.o
+	g++ -std=c++11 $^ -o $@
+
+Tests.o: IntegrationTest.cpp
+	g++ -std=c++11 -c $^ -o $@
+
 Main.o: Main.cpp 
 	g++ -std=c++11 -c $^ -o $@
 
