@@ -21,3 +21,6 @@
 *.backup
 *.kate-swp
 *.swp
+enigma
+src/tests
+tests
