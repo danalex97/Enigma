@@ -1,4 +1,4 @@
-#include "Enigma.hpp"
+#include "machine/Enigma.hpp"
 using namespace std;
 
 #include <algorithm>
@@ -7,7 +7,7 @@ Enigma::Enigma(const vector<string>& rotor_files, const string& plugboard_file) 
 	for (const auto &rotor_file : rotor_files) {
 		rotors.push_back(make_shared<Rotor>(rotor_file));
 	}
-	
+
 	plugboard = make_shared<Plugboard>(plugboard_file);
 	reflector = make_shared<Reflector>();
 	build_pipeline();
@@ -32,7 +32,7 @@ void Enigma::build_pipeline() {
 }
 
 string Enigma::feed(const string& input, bool forward) {
-	string output;		
+	string output;
 	for (auto &ch : input) {
 		if (ch >= 'A' && ch <= 'Z') {
 			output += forward ? pipeline.map(ch) : pipeline.inv_map(ch);
@@ -45,14 +45,14 @@ string Enigma::feed(const string& input, bool forward) {
 		} else {
 			output += ch;
 		}
-		
+
 	}
 	return output;
 }
 
 string Enigma::encode(const string& input) {
 	return feed(input, true);
-} 
+}
 
 string Enigma::decode(const string& output) {
 	string feed_text = output + "A";
@@ -60,7 +60,7 @@ string Enigma::decode(const string& output) {
 	reverse(feed_text.begin(), feed_text.end());
 	string input = feed(feed_text, false);
 	reverse(input.begin(), input.end());
-	
+
 	input = input.substr(0, input.size() - 1);
 	return input;
-} 
+}

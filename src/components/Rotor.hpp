@@ -1,7 +1,7 @@
 #ifndef Rotor_h
 #define Rotor_h
 
-#include "Component.hpp"
+#include "components/Component.hpp"
 
 #include <string>
 #include <fstream>
@@ -11,9 +11,9 @@
 /*
  * The rotor component build direct and inverse mappings
  * keeping track of the position of a rotor using a offset.
- * The update of the mapping is made in O(1) as it directly 
- * depends on the offset, that can be updated using the 
- * forward and backward functions. 
+ * The update of the mapping is made in O(1) as it directly
+ * depends on the offset, that can be updated using the
+ * forward and backward functions.
  */
 
 class Rotor : public Component {
@@ -22,8 +22,8 @@ public:
 	virtual ~Rotor() = default;
 
 	char map(char c) const;
-	char inv_map(char c) const; 
-	
+	char inv_map(char c) const;
+
 	bool forward();
 	bool backward();
 private:
@@ -40,7 +40,7 @@ private:
 
 /*
  * Wrapper class over Rotor used in the pipeline as the
- * second pass through the rotors. Is constructed from 
+ * second pass through the rotors. Is constructed from
  * a pointer to a rotor, being implicitly updated.
  */
 

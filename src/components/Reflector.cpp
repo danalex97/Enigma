@@ -1,4 +1,4 @@
-#include "Reflector.hpp"
+#include "components/Reflector.hpp"
 
 char Reflector::map(char ch) const {
 	if (ch >= 'A' && ch <= 'Z') {

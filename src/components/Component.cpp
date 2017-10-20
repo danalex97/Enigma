@@ -1,4 +1,4 @@
-#include "Component.hpp"
+#include "components/Component.hpp"
 using namespace std;
 
 char Component::inv_map(char ch) const {

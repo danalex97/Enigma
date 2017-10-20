@@ -2,8 +2,8 @@
 #include <stdexcept>
 
 #include "Parser.hpp"
-#include "Machine.hpp"
-#include "Enigma.hpp"
+#include "machine/Machine.hpp"
+#include "machine/Enigma.hpp"
 using namespace std;
 
 int main(int argc, char **argv) {
@@ -21,16 +21,16 @@ int main(int argc, char **argv) {
 	);
 
 	string input;
-	
+
 	try {
 		input = Parser::prepare_input();
 	} catch (invalid_argument e) {
 		cerr << e.what() << endl;
 		return 1;
-	}	
+	}
 	delete parser;
 
-	string output = machine->encode(input); 
+	string output = machine->encode(input);
 	delete machine;
 
 	cout << Parser::eliminate_special_chars(output);

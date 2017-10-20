@@ -1,4 +1,4 @@
-#include "Plugboard.hpp"
+#include "components/Plugboard.hpp"
 using namespace std;
 
 #include <iostream>
@@ -13,7 +13,7 @@ Plugboard::Plugboard(const string& file_name) {
 	int x = 0, y = 0;
 	while (file >> x >> y) {
 		mapping[x] = 'A' + char(y);
-		mapping[y] = 'A' + char(x);	
+		mapping[y] = 'A' + char(x);
 	}
 
 	file.close();

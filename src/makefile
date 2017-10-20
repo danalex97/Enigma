@@ -1,37 +1,40 @@
 # edit this makefile so that running make compiles your enigma program
+INC=-I $(shell pwd)
+GCC=g++
+FLAGS=-std=c++11 $(INC)
 
 enigma: Main.o Plugboard.o Reflector.o Rotor.o Pipeline.o Enigma.o Parser.o Component.o
-	g++ -std=c++11 $^ -o $@
+	$(GCC) $(FLAGS) $^ -o $@
 
 tests: Tests.o Plugboard.o Reflector.o Rotor.o Pipeline.o Enigma.o Component.o
-	g++ -std=c++11 $^ -o $@
+	$(GCC) $(FLAGS) $^ -o $@
 
-Tests.o: IntegrationTest.cpp
-	g++ -std=c++11 -c $^ -o $@
+Tests.o: test/IntegrationTest.cpp
+	$(GCC) $(FLAGS) -c $^ -o $@
 
-Main.o: Main.cpp 
-	g++ -std=c++11 -c $^ -o $@
+Main.o: Main.cpp
+	$(GCC) $(FLAGS) -c $^ -o $@
 
-Enigma.o: Enigma.cpp 
-	g++ -std=c++11 -c $^ -o $@
+Enigma.o: machine/Enigma.cpp
+	$(GCC) $(FLAGS) -c $^ -o $@
 
-Pipeline.o: Pipeline.cpp 
-	g++ -std=c++11 -c $^ -o $@
+Pipeline.o: components/Pipeline.cpp
+	$(GCC) $(FLAGS) -c $^ -o $@
 
-Plugboard.o: Plugboard.cpp 
-	g++ -std=c++11 -c $^ -o $@
+Plugboard.o: components/Plugboard.cpp
+	$(GCC) $(FLAGS) -c $^ -o $@
 
-Reflector.o: Reflector.cpp
-	g++ -std=c++11 -c $^ -o $@
+Reflector.o: components/Reflector.cpp
+	$(GCC) $(FLAGS) -c $^ -o $@
 
-Rotor.o: Rotor.cpp
-	g++ -std=c++11 -c $^ -o $@
+Rotor.o: components/Rotor.cpp
+	$(GCC) $(FLAGS) -c $^ -o $@
 
 Parser.o: Parser.cpp
-	g++ -std=c++11 -c $^ -o $@
+	$(GCC) $(FLAGS) -c $^ -o $@
 
-Component.o: Component.cpp
-	g++ -std=c++11 -c $^ -o $@
+Component.o: components/Component.cpp
+	$(GCC) $(FLAGS) -c $^ -o $@
 
 clean:
 	rm -rf enigma *.o

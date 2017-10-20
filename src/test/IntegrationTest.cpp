@@ -6,8 +6,8 @@
 using namespace std;
 
 #include "Parser.hpp"
-#include "Machine.hpp"
-#include "Enigma.hpp"
+#include "machine/Machine.hpp"
+#include "machine/Enigma.hpp"
 
 const int SIGMA = 26;
 const string FOLDER = "components";
@@ -33,8 +33,8 @@ static void gen_input_file(const string& file_path) {
 
 static string gen_input(int length) {
 	string out;
-	for (int i = 0; i < length; ++i) { 
-		out += int(rand() % SIGMA) + 'A'; 
+	for (int i = 0; i < length; ++i) {
+		out += int(rand() % SIGMA) + 'A';
 	}
 	return out;
 }
@@ -42,7 +42,7 @@ static string gen_input(int length) {
 int main() {
 	srand(time(0));
 	for (int i = 1; i <= TESTS; ++i) {
-		vector<string> rotor_files; 
+		vector<string> rotor_files;
 		for (int j = 0; j < ROTORS; ++j) {
 			stringstream ss;
 			ss << FOLDER << '/';

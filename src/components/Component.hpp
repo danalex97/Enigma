@@ -16,4 +16,4 @@ public:
 	virtual char inv_map(char c) const;
 };
 
-#endif 
+#endif

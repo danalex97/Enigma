@@ -1,4 +1,4 @@
-#include "Pipeline.hpp"
+#include "components/Pipeline.hpp"
 using namespace std;
 
 void Pipeline::add(shared_ptr<Component> component) {

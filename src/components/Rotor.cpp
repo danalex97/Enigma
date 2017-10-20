@@ -1,4 +1,4 @@
-#include "Rotor.hpp"
+#include "components/Rotor.hpp"
 using namespace std;
 
 Rotor::Rotor(const string& file_name) : dir_map(SIGMA), rev_map(SIGMA) {
